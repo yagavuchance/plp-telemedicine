@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemedicine Application</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+   <!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <!-- Navigation Bar -->
+<!-- Navigation Bar -->
+<!-- Navigation Bar -->
+<header>
+    <div class="container">
+        <div class="logo">
+            <a href="#">
+                <img src="images/logo.jpg" alt="Telemedicine Logo" class="logo-img">
+            </a>
+        </div>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+            &#9776; <!-- Menu icon -->
+        </button>
+        <nav>
+            <ul class="nav-list" id="nav-list">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#appointment-section">Appointment</a></li>
+                <li><a href="#about-us-section">About Us</a></li>
+                <li><a href="#contact-us-section">Contact Us</a></li>
+                <li id="login-signup-container"><a href="/register.html">Login/Sign Up</a></li>
+        
+                <!-- Profile Dropdown -->
+                <li class="dropdown" id="profile-container" style="display: none;">
+                    <a href="#profile" class="dropbtn" id="profile-name">Profile</a>
+                    <div class="dropdown-content" id="profile-menu" style="display: none;">
+                        <a id="view-profile" href="#" data-bs-toggle="modal" data-bs-target="#viewProfileModal">View Profile</a>
+                        <a id="update-profile" href="#" data-bs-toggle="modal" data-bs-target="#updateProfileModal">Update Profile</a>
+                        <a id="view-appointments" href="#" data-bs-toggle="modal" data-bs-target="#viewAppointmentsModal">My Appointments</a>
+                        <a id="reschedule-appointment" href="#" data-bs-toggle="modal" data-bs-target="#scheduledAppointmentsModal">Reschedule Appointment</a>
+                        <a id="cancel-appointment" href="#" data-bs-toggle="modal" data-bs-target="#cancelAppointmentModal">Cancel Appointment</a>
+                        <a id="delete-account" href="#" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Delete Account</a>
+                    </div>
+                </li>
+                <li><a id="logout-button" href="#" style="display: none;">Logout</a></li>
+            </ul>
+        </nav>
+        
+        
+      <!-- View Profile Modal -->
+<div class="modal fade" id="viewProfileModal" tabindex="-1" aria-labelledby="viewProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewProfileModalLabel">View Profile</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Dynamic profile data will be inserted here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Appointments Modal -->
+<div class="modal fade" id="viewAppointmentsModal" tabindex="-1" aria-labelledby="viewAppointmentsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="viewAppointmentsModalLabel">View Appointments</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="appointmentsList">
+                <!-- Dynamic appointments data will be inserted here -->
+                <p>Your appointments will be displayed here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+      <!-- Bootstrap Modal -->
+<div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> <!-- Use modal-lg for a larger modal -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateProfileModalLabel">Update Profile</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Update Profile Form -->
+          <div id="update-profile-form">
+            <form id="profile-form">
+              <div class="mb-3"> <!-- Add margin-bottom for spacing -->
+                <label for="update_first_name" class="form-label">First Name:</label>
+                <input type="text" id="update_first_name" name="first_name" class="form-control" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="update_last_name" class="form-label">Last Name:</label>
+                <input type="text" id="update_last_name" name="last_name" class="form-control" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="update_phone" class="form-label">Phone:</label>
+                <input type="text" id="update_phone" name="phone" class="form-control" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="update_date_of_birth" class="form-label">Date of Birth:</label>
+                <input type="date" id="update_date_of_birth" name="date_of_birth" class="form-control" required>
+              </div>
+  
+              <div class="mb-3">
+                <label for="update_gender" class="form-label">Gender:</label>
+                <select id="update_gender" name="gender" class="form-select" required>
+                  <option value="" disabled selected>Select your gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+  
+              <div class="mb-3">
+                <label for="update_address" class="form-label">Address:</label>
+                <input type="text" id="update_address" name="address" class="form-control" required>
+              </div>
+  
+              <button type="button" id="submit-profile" class="btn btn-primary">Update Profile</button>
+            </form>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+<!-- Rescheduled Appointments Modal -->
+<div class="modal fade" id="scheduledAppointmentsModal" tabindex="-1" aria-labelledby="scheduledAppointmentsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="scheduledAppointmentsModalLabel">Scheduled Appointments</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                <div id="reschedule-form" style="display:none;">
+                    <h3 class="mb-3">Reschedule Appointment</h3>
+
+                    <div class="mb-3">
+                        <label for="appointment-id" class="form-label">Appointment ID:</label>
+                        <input type="text" id="appointment-id" class="form-control" placeholder="Enter Appointment ID" required readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="new-date" class="form-label">New Date:</label>
+                        <input type="date" id="new-date" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="new-time" class="form-label">New Time:</label>
+                        <input type="time" id="new-time" class="form-control" required>
+                    </div>
+
+                    <button id="submit-reschedule" class="btn btn-primary">Reschedule Appointment</button>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap Modal for Login -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Login Form -->
+                <form id="login-form">
+                    <div class="mb-3">
+                        <label for="login_email" class="form-label">Email:</label>
+                        <input type="email" id="login_email" name="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="login_password" class="form-label">Password:</label>
+                        <input type="password" id="login_password" name="password" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true" data-bs-backdrop="static">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal content goes here -->
+        </div>
+    </div>
+</div>
+
+
+
+
+
+        <!-- Search Form -->
+       
+    </div>
+</header>
+
+<div id="reschedule-form" style="display:none;">
+    <h3>Reschedule Appointment</h3>
+    <label for="appointment-id">Appointment ID:</label>
+    <input type="text" id="appointment-id" placeholder="Enter Appointment ID" required>
+    
+    <label for="new-date">New Date:</label>
+    <input type="date" id="new-date" required>
+    
+    <label for="new-time">New Time:</label>
+    <input type="time" id="new-time" required>
+    
+    <button id="submit-reschedule">Reschedule Appointment</button>
+</div>
+
+
+
+   <!-- Hero Slider -->
+<section class="hero-slider">
+    <div class="slide active" style="background-image: url('images/dr.jpg');">
+        <div class="slide-content">
+            <h1>Access Healthcare Anywhere, Anytime</h1>
+            <p>Connect with our expert doctors from the comfort of your home.</p>
+            <a href="#" class="cta-button">Get Started</a>
+        </div>
+    </div>
+    <div class="slide" style="background-image: url('images/slider1.jpg');">
+        <div class="slide-content">
+            <h1>Book Appointments Easily</h1>
+            <p>Find the right doctor and book an appointment with just a few clicks.</p>
+            <a href="#appointment-section" class="cta-button">Book Now</a>
+        </div>
+    </div>
+    <div class="slide" style="background-image: url('images/slider2.jpg');">
+        <div class="slide-content">
+            <h1>Your Health, Our Priority</h1>
+            <p>We provide personalized care plans tailored to your needs.</p>
+            <a href="#" class="cta-button">Learn More</a>
+        </div>
+    </div>
+    <div class="slider-nav">
+        <button class="prev" onclick="changeSlide(-1)">&#10094;</button>
+        <button class="next" onclick="changeSlide(1)">&#10095;</button>
+    </div>
+</section>
+
+
+<!-- About Us Section -->
+<section id="about-us-section">
+    <div class="about-us-container">
+        <!-- Image Column -->
+        <div class="image-column">
+            <img src="/images/slider2.jpg" alt="About Us" class="about-us-image">
+        </div>
+
+        <!-- Text Column -->
+        <div class="text-column">
+            <h2>About Us</h2>
+            <p>
+                Welcome to our telemedicine platform! We are dedicated to providing accessible healthcare services
+                that connect patients with qualified medical professionals from the comfort of their homes. Our
+                mission is to revolutionize the way healthcare is delivered, making it more convenient and
+                efficient for everyone.
+            </p>
+            <p>
+                Our team comprises experienced healthcare professionals and technology experts who are passionate
+                about improving patient outcomes through innovative solutions. We believe in the power of
+                technology to enhance healthcare delivery and empower patients to take control of their health.
+            </p>
+            <button class="learn-more-button">Learn More</button>
+        </div>
+    </div>
+</section>
+
+
+<section id="md-live-steps" class="container">
+    <h2>Using The Telemedicine is as easy as one, two, three Steps.</h2>
+    <div class="steps">
+        <div class="step">
+            <img src="images/step 1.png" alt="icon of a sheet of paper with checkboxes">
+            <h3>Step 1</h3>
+            <p>Create your account</p>
+        </div>
+        <div class="step">
+            <img src="images/step 2.png" alt="icon of a daily desk calendar">
+            <h3>Step 2</h3>
+            <p>Book Appointment</p>
+        </div>
+        <div class="step">
+            <img src="images/step 3.png" alt="icon of a doctor with stethoscope">
+            <h3>Step 3</h3>
+            <p>Talk to a doctor</p>
+        </div>
+    </div>
+    <div class="info">
+        <p>Certain urgent care conditions can be cared for through E-Treatment, which does not require a live visit with a doctor. <a href="#">Click here</a></p>
+    </div>
+</section>
+<!-- What We Care For Section -->
+<section id="what-we-care-for" class="what-we-care-for">
+    <div class="container">
+        <h2>What We Care For</h2>
+        <div class="services-row">
+            <!-- Urgent Care Services -->
+            <div class="service-category">
+                <img src="images/dr.jpg" alt="Man Blowing Nose into Tissue"> <!-- Replace with the correct image -->
+                <h3>Urgent Care</h3>
+                <ul>
+                    <li>Allergies</li>
+                    <li>Birth Control</li>
+                    <li>Cold & Flu</li>
+                    <li>Cough</li>
+                    <li>Ear Pain</li>
+                    <li>Headache</li>
+                    <li>Insect Bites</li>
+                    <li>Medication Refills</li>
+                    <li>Pink Eye</li>
+                    <li>Rash</li>
+                    <li>Sinus Problems</li>
+                    <li>Sore Throat</li>
+                    <li>UTI (Females, 18+)</li>
+                    <li>Yeast Infections</li>
+                </ul>
+                <button class="learn-more">Learn More</button> <!-- Added Learn More Button -->
+            </div>
+            <!-- Primary Care Services -->
+            <div class="service-category">
+                <img src="images/dr.jpg" alt="Man Sits and Reads on a Tablet"> <!-- Replace with the correct image -->
+                <h3>Primary Care</h3>
+                <ul>
+                    <li>Wellness Screenings</li>
+                    <li>Routine Care</li>
+                    <li>Asthma</li>
+                    <li>Diabetes (Type 2)</li>
+                    <li>High Blood Pressure</li>
+                    <li>High Cholesterol</li>
+                    <li>Obesity</li>
+                    <li>Prediabetes</li>
+                    <li>Thyroid Issues</li>
+                    <li>Thyroid Issues</li>
+                    <li>Thyroid Issues</li>
+                    <li>Thyroid Issues</li>
+                    <li>Thyroid Issues</li>
+                    <li>Thyroid Issues</li>
+                    
+                </ul>
+                <button class="learn-more">Learn More</button> <!-- Added Learn More Button -->
+            </div>
+            <!-- Mental Health Services -->
+            <div class="service-category">
+                <img src="images/dr.jpg" alt="Woman Thinking"> <!-- Replace with the correct image -->
+                <h3>Mental Health</h3>
+                <ul>
+                    <li>Addictions</li>
+                    <li>Aging & Caregiver Support</li>
+                    <li>Anxiety</li>
+                    <li>Bipolar</li>
+                    <li>Depression</li>
+                    <li>Grief & Loss</li>
+                    <li>Life Changes</li>
+                    <li>Obsessive Compulsive Disorder (OCD)</li>
+                    <li>Panic Disorders</li>
+                    <li>Parenting Support</li>
+                    <li>Phobias</li>
+                    <li>Relationship Issues</li>
+                    <li>Stress Management</li>
+                    <li>Trauma & PTSD</li>
+                   
+                </ul>
+                <button class="learn-more">Learn More</button> <!-- Added Learn More Button -->
+            </div>
+            <!-- Dermatology Services -->
+            <div class="service-category">
+                <img src="images/dr.jpg" alt="Young Woman Popping a Pimple on Face"> <!-- Replace with the correct image -->
+                <h3>Dermatology</h3>
+                <ul>
+                    <li>Acne</li>
+                    <li>Alopecia (Hair Loss)</li>
+                    <li>Boils</li>
+                    <li>Cold Sores</li>
+                    <li>Cysts</li>
+                    <li>Dermatitis (Including Maskne)</li>
+                    <li>Eczema</li>
+                    <li>Folliculitis</li>
+                    <li>Fungal Skin Infections</li>
+                    <li>Hives</li>
+                    <li>Keratosis</li>
+                    <li>Rosacea</li>
+                    <li>Skin Pigmentation Disorders</li>
+                    <li>Suspicious Spots & Moles</li>
+                </ul>
+                <button class="learn-more">Learn More</button> <!-- Added Learn More Button -->
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- New Sections -->
+<section id="doctors" class="doctors">
+    <h2>Our Doctors</h2>
+    <p>Meet our team of specialized doctors. Choose a doctor based on your healthcare needs.</p>
+    <div class="doctor-list">
+        <!-- Doctor items will be inserted here dynamically -->
+    </div>
+</section>
+
+
+<!-- Book Appointment Section -->
+<section id="appointment-section">
+    <div id="appointment-container">
+        <!-- Image Column -->
+        <div class="image-column">
+            <img src="/images/dr.jpg" alt="Doctor Consultation" class="appointment-image">
+        </div>
+
+        <!-- Booking Form Column -->
+        <div class="form-column">
+            <h2>Book Appointment</h2>
+            <form id="appointment-form">
+                <select id="doctor_id" required>
+                    <option value="">Select Doctor</option>
+                    <!-- This will be populated with doctors from the API -->
+                </select>
+                <input type="date" id="appointment_date" required>
+                <input type="time" id="appointment_time" required>
+                <button type="submit">Book Appointment</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- Our Services Section -->
+<section id="services" class="our-services">
+    <div class="container">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="images/dr.jpg" alt="Medical Consultation">
+                </div>
+                <div class="service-overlay">
+                    <h3>Medical Consultation</h3>
+                    <p>Expert consultations for all your healthcare concerns.</p>
+                    <a href="#" class="cta-button">Learn More</a>
+                </div>
+            </div>
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="images/slider1.jpg" alt="Diagnostic Services">
+                </div>
+                <div class="service-overlay">
+                    <h3>Diagnostic Services</h3>
+                    <p>Comprehensive diagnostic tests and screenings.</p>
+                    <a href="#" class="cta-button">Learn More</a>
+                </div>
+            </div>
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="images/slider2.jpg" alt="Pharmacy Services">
+                </div>
+                <div class="service-overlay">
+                    <h3>Pharmacy Services</h3>
+                    <p>Access to quality medicines and pharmaceutical advice.</p>
+                    <a href="#" class="cta-button">Learn More</a>
+                </div>
+            </div>
+            <!-- Add more service cards as needed -->
+        </div>
+    </div>
+</section>
+
+
+
+<section id="blog" class="blog-section">
+    <h2>Latest Blogs</h2>
+    <div class="blog-grid">
+        <div class="blog-post">
+            <img src="images/slider2.jpg" alt="Healthcare Survey Results">
+            <div class="blog-content">
+                <h3>2023 Healthcare Worker Survey Results</h3>
+                <p>Therapy Aid Coalition</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <div class="blog-post">
+            <img src="images/slider2.jpg" alt="Cumulative Trauma in First Responders">
+            <div class="blog-content">
+                <h3>What is Cumulative Trauma in First Responders?</h3>
+                <p>Liz Durfee, Associate Clinical Social Worker</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+        <div class="blog-post">
+            <img src="images/slider2.jpg" alt="Working from Home Support">
+            <div class="blog-content">
+                <h3>To Those Who Can’t Work from Home: It’s Okay to Not Be Okay</h3>
+                <p>Jennifer Silacci</p>
+                <a href="#">Read More</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Contact Us Section -->
+<section id="contact-us-section">
+    <div class="contact-us-container">
+        <!-- Map Column -->
+        <div class="map-column">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d15959.042663807646!2d32.551056249999995!3d0.3080192!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sug!4v1730821542774!5m2!1sen!2sug" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <!-- Form Column -->
+        <div class="form-column">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name:</label>
+                    <input type="text" id="name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email:</label>
+                    <input type="email" id="email" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message" class="form-label">Message:</label>
+                    <textarea id="message" class="form-control" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section id="testimonies" class="container my-5">
+    <h2 class="text-center mb-4">What Our Patients Say</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">Using the telemedicine service was life-changing for me. I was able to consult with a doctor from the comfort of my home and receive a diagnosis and treatment plan on the same day. It saved me time and allowed me to focus on my recovery.</p>
+                    <h5 class="card-title">- Sarah K., 34</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">The telemedicine platform provided fast and reliable service when I needed urgent care for my child. The video consultation was seamless, and the doctor was very attentive and thorough. It brought peace of mind in a stressful moment.</p>
+                    <h5 class="card-title">- James M., 42</h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+                <div class="card-body">
+                    <p class="card-text">I loved how easy it was to schedule my telemedicine appointment and speak to a healthcare provider without the long wait times of traditional clinics. It’s a game-changer for people with busy schedules or mobility challenges.</p>
+                    <h5 class="card-title">- Laura T., 29</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<footer class="mt-5">
+    <div class="footer-container">
+        <!-- Footer Navigation Links -->
+        <div class="footer-nav">
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        
+        <!-- Footer Address and Contact Information -->
+        <div class="footer-contact">
+            <p><strong>Address:</strong> 1234 Medical Plaza, Health City, UGANDA</p>
+            <p><strong>Phone:</strong> +256 123 456 789</p>
+            <p><strong>Email:</strong> info@telemedapp.com</p>
+        </div>
+
+        <!-- Footer Social Media Links -->
+        <div class="footer-social">
+            <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+        
+        <!-- Footer Copyright -->
+        <p>&copy; 2024 Telemedicine App. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- FontAwesome Icons CDN for social media icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+<script src="/scripts.js"></script> <!-- Link to your JavaScript file -->
+<!-- Bootstrap JS (including Popper) -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+</body>
+</html>

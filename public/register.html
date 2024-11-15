@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telemedicine Application</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <a href="#">
+                    <img src="images/logo.jpg" alt="Telemedicine Logo" class="logo-img">
+                </a>
+            </div>
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle navigation">
+                &#9776; <!-- Menu icon -->
+            </button>
+            <nav>
+                <ul class="nav-list" id="nav-list">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#appointment-section">Appointment</a></li>
+                    <li><a href="#about-us-section">AboutUs</a></li>
+                    <li><a href="#contact-us-section">ContactUs</a></li>
+                    <li id="login-signup-container"><a href="/register.html">Login/SignUp</a></li>
+                    <li class="dropdown" id="profile-container" style="display: none;">
+                        <a href="#profile" class="dropbtn">Profile</a>
+                        <div class="dropdown-content" id="profile-menu" style="display: none;">
+                            <a id="view-profile" href="#" data-bs-toggle="modal" data-bs-target="#viewProfileModal">View Profile</a>
+                            <a id="update-profile" href="#" data-bs-toggle="modal" data-bs-target="#updateProfileModal">Update Profile</a>
+                            <a id="view-appointments" href="#" data-bs-toggle="modal" data-bs-target="#viewAppointmentsModal">My Appointments</a>
+                            <a id="reschedule-appointment" href="#" data-bs-toggle="modal" data-bs-target="#scheduledAppointmentsModal">Reschedule Appointment</a>
+                            <a id="cancel-appointment" href="#" data-bs-toggle="modal" data-bs-target="#cancelAppointmentModal">Cancel Appointment</a>
+                            <a id="delete-account" href="#" data-bs-toggle="modal" data-bs-target="#deleteAccountModal">Delete Account</a>
+                        </div>
+                    </li>
+                    <li><a id="logout-button" href="#" style="display: none;">Logout</a></li>
+                </ul>
+            </nav>
+            
+        </div>
+    </header>
+
+    <div id="form-container" class="form-section">
+        <!-- Registration Form -->
+        <div class="form-column">
+            <h2>Register</h2>
+            <form id="registration-form">
+                <input type="text" id="first_name" placeholder="First Name" required>
+                <input type="text" id="last_name" placeholder="Last Name" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <button type="submit">Register</button>
+            </form>
+            
+        </div>
+    
+        <!-- Login Form -->
+        <div class="form-column">
+            <h2>Login</h2>
+            <form id="login-form">
+                <input type="email" id="login_email" placeholder="Email" required>
+                <input type="password" id="login_password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            
+        </div>
+    </div>
+    
+
+    <footer class="mt-5">
+        <div class="footer-container">
+            <!-- Footer Navigation Links -->
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <!-- Footer Address and Contact Information -->
+            <div class="footer-contact">
+                <p><strong>Address:</strong> 1234 Medical Plaza, Health City, UGANDA</p>
+                <p><strong>Phone:</strong> +256 123 456 789</p>
+                <p><strong>Email:</strong> info@telemedapp.com</p>
+            </div>
+    
+            <!-- Footer Social Media Links -->
+            <div class="footer-social">
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="social-icon" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            
+            <!-- Footer Copyright -->
+            <p>&copy; 2024 Telemedicine App. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <!-- FontAwesome Icons CDN for social media icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    
+    
+
+    <!-- Bootstrap JS (including Popper) -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    <script src="/scripts.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
